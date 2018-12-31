@@ -314,17 +314,6 @@ class SB_Page extends SB_ErrorHandler
             $url = $SITEBAR['baseurl'];
         }
 
-        if ($url === null)
-        {
-            $hostvar = isset($_SERVER['HTTP_HOST'])?'HTTP_HOST':'SERVER_NAME';
-            $scripturl = isset($_SERVER['SCRIPT_URL'])?$_SERVER['SCRIPT_URL']:$_SERVER['SCRIPT_NAME'];
-            $basedir = $_SERVER[$hostvar].dirname($scripturl);
-            $https = $_SERVER['SERVER_PORT']!=80
-                  && isset($_SERVER['HTTPS'])
-                  && strtolower($_SERVER['HTTPS']) == 'on';
-            $url = 'http' . ($https?'s':'') . '://' . $basedir;
-        }
-
         if ($url{strlen($url)-1} != '/')
         {
             $url .= '/';
@@ -355,7 +344,7 @@ class SB_Page extends SB_ErrorHandler
 
         return $url;
     }
-    
+
     public static function relBaseUrl($override=null)
     {
         static $url = null;
